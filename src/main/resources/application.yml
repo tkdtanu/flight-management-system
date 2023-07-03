@@ -1,0 +1,26 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /flight-service/api/v1
+
+spring:
+  application:
+    name: FlightManagementSystem
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate.hbm2ddl.import_files: airports.sql,airlines.sql,flights.sql,flight_schedules.sql
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: TRACE
+    
+     
