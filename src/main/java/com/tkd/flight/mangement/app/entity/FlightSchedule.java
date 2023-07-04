@@ -9,6 +9,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,16 +33,16 @@ public class FlightSchedule {
 	@Column(columnDefinition = "uuid default random_uuid()")
 	private UUID id;
 
-	@ManyToOne(optional = false,fetch = FetchType.LAZY)
-	@JoinColumn(name = "flight_id")
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "flight_id", foreignKey = @ForeignKey(name = "FK_FlightSchedule_Flight_FlightId"))
 	private Flight flight;
 
-	@ManyToOne(optional = false,fetch = FetchType.LAZY)
-	@JoinColumn(name = "source_airport_id")
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "source_airport_id", foreignKey = @ForeignKey(name = "FK_FlightSchedule_SourceAirport_AirportId"))
 	private Airport source;
 
-	@ManyToOne(optional = false,fetch = FetchType.LAZY)
-	@JoinColumn(name = "destination_airport_id")
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "destination_airport_id", foreignKey = @ForeignKey(name = "FK_FlightSchedule_DestinationAirport_AirportId"))
 	private Airport destination;
 
 	private int duration;
